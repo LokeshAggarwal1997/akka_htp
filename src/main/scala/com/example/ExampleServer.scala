@@ -20,7 +20,7 @@ object ExampleServer extends ExampleRoutes {
     val bindingFuture = Http().bindAndHandle(testRoutes, interface, port)
 
     // Wait until user happy with the test-run and shut down the server afterwards.
-    println(s"Server online at http://$interface:$port/\nPress RETURN to stop...")
+    println(s"Server online -- at http://$interface:$port/\nPress RETURN to stop...")
     Console.readLine()
     bindingFuture.flatMap(_.unbind()).onComplete(_ ⇒ system.shutdown())
   }
