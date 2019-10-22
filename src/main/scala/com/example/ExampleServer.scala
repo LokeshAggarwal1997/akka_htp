@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 
-object ExampleServer extends ExampleRoutes {
+object ExampleServer extends ExampleRoutes with App {
   implicit val system = ActorSystem("ExampleServer")
   import system.dispatcher
   implicit val materializer = ActorMaterializer()
@@ -14,7 +14,7 @@ object ExampleServer extends ExampleRoutes {
   val interface = "127.0.0.1"
   val port = 8081
 
-  def main(args: Array[String]): Unit = {
+ // def main(args: Array[String]): Unit = {
     // Start the Akka HTTP server!
     // Using the mixed-in testRoutes (we could mix in more routes here)
     val bindingFuture = Http().bindAndHandle(testRoutes, interface, port)
@@ -23,5 +23,5 @@ object ExampleServer extends ExampleRoutes {
     println(s"Server online at http://$interface:$port/\nPress RETURN to stop...")
     Console.readLine()
     bindingFuture.flatMap(_.unbind()).onComplete(_ ⇒ system.shutdown())
-  }
+  //}
 }
