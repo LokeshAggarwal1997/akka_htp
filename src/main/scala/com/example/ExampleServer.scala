@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 
-object ExampleServer extends ExampleRoutes with App{
+object ExampleServer extends ExampleRoutes with App {
   implicit val system = ActorSystem("ExampleServer")
   import system.dispatcher
   implicit val materializer = ActorMaterializer()
@@ -20,7 +20,7 @@ object ExampleServer extends ExampleRoutes with App{
     val bindingFuture = Http().bindAndHandle(testRoutes, interface, port)
 
     // Wait until user happy with the test-run and shut down the server afterwards.
-    println(s"Server online at http://$interface:$port/\nPress RETURN to stop...")
+    println(s"Server online at -- http://$interface:$port/\nPress RETURN to stop...")
     Console.readLine()
     bindingFuture.flatMap(_.unbind()).onComplete(_ ⇒ system.shutdown())
   //}
