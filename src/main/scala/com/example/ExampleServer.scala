@@ -11,7 +11,7 @@ object ExampleServer extends ExampleRoutes with App {
 
   // settings about bind host/port
   // could be read from application.conf (via system.settings):
-  val interface = "127.0.0.1"
+  val interface = "0.0.0.0"
   val port = 8081
 
  // def main(args: Array[String]): Unit = {
